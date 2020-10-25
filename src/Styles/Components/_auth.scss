@@ -1,0 +1,48 @@
+
+.auth__main{
+    height: 100vh;
+    margin: 0px !important;
+    background-color: $base;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth__content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth__box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.auth__box-content{
+    
+}
+
+.auth__title{
+    color: $primary;
+}
+
+.auth__input{
+    background-color: $base;
+    border: none;
+    margin: 5px;
+    border-radius: 10px;
+    width: 100%;
+
+    &:active{
+        outline: none;
+    }
+
+    &:focus{
+        background-color: $base;
+        border-color: transparent !important;
+        box-shadow: transparent !important;
+    }
+}
