@@ -12,6 +12,7 @@ export const LoginPage = () => {
 
     const handelLogin = ( e ) => {
         e.preventDefault()
+        reset()
     }
 
     return (

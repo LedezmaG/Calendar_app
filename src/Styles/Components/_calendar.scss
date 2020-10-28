@@ -61,6 +61,54 @@
     }
 }
 
+.btn__fab{
+    border-radius: 100%;
+    bottom: 25px;
+    right: 25px;
+    padding: 15px;
+    position: fixed;
+    background-color: #4460F1;
+    color: white;
+    box-shadow: 10px 10px 17px -10px #4460F1;
+    z-index: 9;
+    &:hover{
+        color: white;
+        box-shadow: 10px 10px 17px -10px #4460F1;
+    }
+    &:active{
+        color: white;
+        box-shadow: 10px 10px 17px -10px #4460F1;
+    }
+    &:focus{
+        color: white;
+        box-shadow: 10px 10px 17px -10px #4460F1;
+    }
+}
+
+.btn__fab-trash{
+    border-radius: 100%;
+    bottom: 100px;
+    right: 25px;
+    padding: 15px;
+    position: fixed;
+    background-color: #EE6D60;
+    color: white;
+    box-shadow: 10px 10px 17px -10px #EE6D60;
+    z-index: 9;
+    &:hover{
+        color: white;
+        box-shadow: 10px 10px 17px -10px #EE6D60;
+    }
+    &:active{
+        color: white;
+        box-shadow: 10px 10px 17px -10px #EE6D60;
+    }
+    &:focus{
+        color: white;
+        box-shadow: 10px 10px 17px -10px #EE6D60;
+    }
+}
+
 // Date picker
 .react-datetime-picker input:focus {
     outline: none;

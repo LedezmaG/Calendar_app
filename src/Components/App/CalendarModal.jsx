@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment'
@@ -6,6 +6,7 @@ import { useForm } from '../../Hooks/useForm'
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../Actions/ui';
+import { eventAddNew, eventCleanActive, eventUpdated } from '../../Actions/events';
 
 const customStyles = {
     content : {
@@ -21,36 +22,48 @@ Modal.setAppElement('#root')
 const now = moment().minute(0).seconds(0).add( 1, 'hours' )
 const nowplus = now.clone().add( 2, 'hours' )
 
+const initialForm = {
+    title: '',
+    notes: '',
+    start: now,
+    end: nowplus
+}
+
 export const CalendarModal = () => {
 
     const dispatch = useDispatch()
     const { modalOpen } = useSelector(state => state.ui )
+    const { activeEvent } = useSelector(state => state.calendar )
 
     const [dateStart, setDateStart] = useState( now.toDate() )
     const [dateEnd, setDateEnd] = useState( nowplus.toDate() )
     const [isTitleValid, setIsTitleValid] = useState( true )
-    const [ formValues, handleimputChange ] = useForm({
-        title: '',
-        notes: '',
-        start: now.toDate(),
-        end: nowplus.toDate(),
-    })
-    const { title, notes, start, end } = formValues
+    const [formValues, setFormValues] = useState(initialForm)
+    
+    const { title, notes } = formValues
+
+    useEffect(() => {
+        if ( activeEvent !== null) {
+            setFormValues( activeEvent )
+        }
+    }, [ activeEvent, setFormValues ]);
 
     const closeModal = () => {
+        setFormValues( initialForm )
+        dispatch( eventCleanActive() )
         dispatch( uiCloseModal() )
     }
-    const handelStartDate = ( e ) => {
-        setDateStart( e );
+    
+    const handleimputChange = ({ target }) => {
+        setFormValues({
+            ...formValues,
+            [target.name]: target.value
+        })
     }
-    const handelEndDate = ( e ) => {
-        setDateEnd( e );
-    }
+
     const handelSubmit = ( e ) => {
         e.preventDefault()
 
-
-        console.log(' submit ');
         const momentStart = moment( dateStart )
         const momentEnd = moment( dateEnd )
         
@@ -66,6 +79,25 @@ export const CalendarModal = () => {
             return setIsTitleValid( false )
         }
 
+        if ( activeEvent ) {
+            dispatch( eventUpdated( formValues ) )
+        }
+        else{
+            dispatch( 
+                eventAddNew({
+                    id: new Date().getTime(),
+                    title: title,
+                    start: dateStart,
+                    end: dateEnd,
+                    notes: notes,
+                    user:{
+                        _id: '123',
+                        name: 'David'
+                    }
+                })
+            )
+        }
+
         setIsTitleValid( true )
         closeModal()
     }
@@ -79,7 +111,7 @@ export const CalendarModal = () => {
         className="modal"
         overlayClassName="modal-fondo"
         >
-            <h2 className=""><b> Nuevo evento </b></h2>
+            <h2 className=""><b> { activeEvent !== null ? 'Editar Evento' : 'Nuevo evento' } </b></h2>
             <hr />
             <form 
                 onSubmit={ handelSubmit }
@@ -90,7 +122,7 @@ export const CalendarModal = () => {
                     <label><b> Fecha y hora inicio </b></label>
                     <DateTimePicker
                         className="form-control input_app"
-                        onChange={ handelStartDate }
+                        onChange={ e => setDateStart( e ) }
                         value={ dateStart }
                     />
                 </div>
@@ -98,7 +130,7 @@ export const CalendarModal = () => {
                     <label><b> Fecha y hora fin </b></label>
                     <DateTimePicker
                         className="form-control input_app"
-                        onChange={ handelEndDate }
+                        onChange={ e => setDateEnd( e ) }
                         value={ dateEnd }
                         minDate={ dateStart }
                     />

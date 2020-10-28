@@ -9,29 +9,26 @@ import sideImage from './../../Assets/navegando.png'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { CalendarEvents } from './CalendarEvents'
 import { CalendarModal } from './CalendarModal'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { uiOpenModal } from '../../Actions/ui'
+import { eventSetActive } from '../../Actions/events'
+import { AddNewfab } from '../Ui/AddNewfab'
+import { TrashFab } from '../Ui/TrashFab'
 
 moment.locale('es')
 const localizer = momentLocalizer(moment)
 
-const events = [{
-    title: 'Fiesta',
-    start: moment().toDate(),
-    end: moment().add(2, 'hours').toDate(),
-}]
-
 export const CalendarPage = () => {
 
     const dispatch = useDispatch()
+    const { events, activeEvent } = useSelector(state => state.calendar)
     const [lastView, setlastView] = useState( localStorage.getItem( 'lastView'  || 'month' ) );
 
     const onClickEvent = ( e ) => {
-        console.log( e );
+        dispatch( uiOpenModal() )
     }
     const onSelectEvent = ( e ) => {
-        console.log( e );
-        dispatch( uiOpenModal() )
+        dispatch( eventSetActive( e ) )
     }
     const onViewChange = ( e ) => {
         setlastView( e )
@@ -82,6 +79,8 @@ export const CalendarPage = () => {
                     />
                 </div>
 
+                { activeEvent !== null && <TrashFab /> }
+                <AddNewfab />
                 <CalendarModal />
             </div>
         </div>

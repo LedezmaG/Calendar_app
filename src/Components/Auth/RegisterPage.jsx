@@ -13,13 +13,15 @@ export const RegisterPage = () => {
 
     const handelLogin = ( e ) => {
         e.preventDefauld()
+
+        reset()
     }
 
     return (
 
         <div className="">
             <h3>Registro</h3>
-            <form>
+            <form onSubmit={ handelLogin }>
                 <div className="form-group">
                     <input
                         type="text"
