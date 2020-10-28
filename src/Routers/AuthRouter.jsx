@@ -9,18 +9,24 @@ import { RegisterPage } from '../Components/Auth/RegisterPage';
 
 export const AuthRouter = () => {
     return (
-        <div className="auth__main row ">
-            <div className="col-6">
+        <div 
+            id='auth_main'
+        >
+            <div className="container">
+                <div className="row align-items-center ustify-content-center auth__container">
+                    <div 
+                        id="auth__image"
+                        className="col-md-6 "
+                    > </div>
 
-            </div>
-            <div className="col-6 auth__content">
-                <div className="auth__box">
-                    <Switch>
-                        <Route exact path="/auth/login" component={ LoginPage } />
-                        <Route exact path="/auth/register" component={ RegisterPage } />
+                    <div className="col-md-6 auth__form">
+                        <Switch>
+                            <Route exact path="/auth/login" component={ LoginPage } />
+                            <Route exact path="/auth/register" component={ RegisterPage } />
 
-                        <Redirect to="/auth/login" />
-                    </Switch>
+                            <Redirect to="/auth/login" />
+                        </Switch>
+                    </div>
                 </div>
             </div>
         </div>

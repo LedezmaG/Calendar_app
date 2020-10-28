@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Vampiro+One&display=swap');
+
+
+#calendar__main{
+    background-color: $base-app;
+    margin: 0;
+}
+
+.navbar__logo{
+    font-family: 'Vampiro One', cursive;
+    color: #62B2FA !important;
+}
+
+.calendar__screen{
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+}
+
+.calendar__box{
+    background-color: white;
+    padding: 15px;   
+}
+
+.input_app{
+    background-color: #E9EFF6;
+    border: 0px;
+    color: #505254;
+    border-radius: 10px;
+    
+    &:hover{
+        background-color: #E9EFF6;
+        color: #505254;
+    }
+    &:active{
+        background-color: #E9EFF6;
+        color: #505254;
+    }
+    &:focus{
+        background-color: #E9EFF6;
+        color: #505254;
+    }
+}
+
+.btn_app{
+    background-color: #4460F1;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 17px -10px rgba(68,96,241,1);
+    
+    &:hover{
+        color: white;
+        box-shadow: none;
+        transition: box-shadow none .3s ease;
+    }
+    &:active{
+        color: white;
+    }
+    &:focus{
+        color: white;
+    }
+}
+
+// Date picker
+.react-datetime-picker input:focus {
+    outline: none;
+}
+.react-datetime-picker__wrapper {
+    border: 0px;
+}

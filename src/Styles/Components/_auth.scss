@@ -1,48 +1,52 @@
 
-.auth__main{
-    height: 100vh;
-    margin: 0px !important;
+#auth_main{
     background-color: $base;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.auth__content{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.auth__container{
+    height: 100vh;
 }
 
-.auth__box{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
+#auth__image{
+    background-image: url('https://cdn.dribbble.com/users/942818/screenshots/11979015/media/a1bc405bf3d469150be81291d3e86cc2.png');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center center;
+    min-height: 75vh;
 }
 
-.auth__box-content{
-    
+.auth__form{
+    border-radius: 5px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    padding: 5%;
+    background: $grey-lite;
+}
+.auth__form h3{
+    text-align: center;
+    color: $base;
 }
 
-.auth__title{
-    color: $primary;
+.auth__btn{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    background-color: #fff;
+    color: #0062cc;
 }
 
 .auth__input{
-    background-color: $base;
-    border: none;
-    margin: 5px;
-    border-radius: 10px;
+    width: 50%;
+    border-radius: 1rem;
     width: 100%;
+    background-color: #fff;
+}
 
-    &:active{
-        outline: none;
-    }
-
-    &:focus{
-        background-color: $base;
-        border-color: transparent !important;
-        box-shadow: transparent !important;
-    }
+.auth__form .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    
 }

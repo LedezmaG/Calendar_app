@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useForm } from '../../Hooks/useForm'
 
 export const LoginPage = () => {
@@ -10,40 +11,44 @@ export const LoginPage = () => {
     const { email, pass } = formValues
 
     const handelLogin = ( e ) => {
-        e.preventDefauld()
+        e.preventDefault()
     }
 
     return (
-        <div className="auth__box-content">
-            <h1 className="auth__title">
-                Login
-            </h1>
-            <form 
-                className="form-group"
-                onSubmit={ handelLogin }
-            >
-                <input 
-                    type="email"
-                    name="email"
-                    className="form-control auth__input"
-                    onChange={ handleimputChange }
-                    value={ email }
-                />
-                <input 
-                    type="password"
-                    name="pass"
-                    className="form-control auth__input"
-                    onChange={ handleimputChange }
-                    value={ pass }
-                />
-                <button
-                    type='submit'
-                    className="btn btn-block"
-                >
-                    Login
-                </button>
-
+        <>
+            <h3>Ingreso</h3>
+            <form onSubmit={ handelLogin } >
+                <div className="form-group">
+                    <input 
+                        type="text"
+                        className="form-control auth__input"
+                        placeholder="Email"
+                        name="email"
+                        value={ email }
+                        onChange={ handleimputChange }
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        type="password"
+                        className="form-control auth__input"
+                        placeholder="Password"
+                        name="pass"
+                        value={ pass }
+                        onChange={ handleimputChange }
+                    />
+                </div>
+                <div className="form-group">
+                    <input 
+                        type="submit"
+                        className="auth__btn"
+                        value="Login" 
+                    />
+                </div>
+                <div className="form-group">
+                    <Link to="/auth/register" > Create account </Link>
+                </div>
             </form>
-        </div>
+        </>
     )
 }
